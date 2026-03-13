@@ -1,0 +1,18 @@
+[project]
+name = "find-me"
+version = "0.1.0"
+description = "Find photos of yourself in a folder of event photos using face recognition."
+requires-python = ">=3.12"
+dependencies = [
+    "face_recognition",
+    "face-recognition-models @ git+https://github.com/ageitgey/face_recognition_models",
+    "setuptools<81",
+    "rawpy",
+    "pillow",
+    "pillow-heif",
+    "tqdm",
+    "numpy",
+]
+
+[project.scripts]
+find-me = "find_me:main"
