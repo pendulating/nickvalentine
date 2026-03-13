@@ -9,7 +9,6 @@ CR3, NEF, ARW, DNG), and HEIC files. Scans subdirectories recursively.
 
 import argparse
 import os
-import resource
 import shutil
 import sys
 import time
@@ -75,9 +74,6 @@ def check_photo(file_path: str, known_encodings: list[np.ndarray], tolerance: fl
 def _init_worker(niceness: int):
     """Initializer for worker processes: lower priority so we don't starve the system."""
     os.nice(niceness)
-    # Limit each worker's RSS to 1 GB to prevent runaway memory usage
-    one_gb = 1 * 1024 * 1024 * 1024
-    resource.setrlimit(resource.RLIMIT_RSS, (one_gb, one_gb))
 
 
 def _worker(args: tuple) -> tuple[str, bool, str]:
